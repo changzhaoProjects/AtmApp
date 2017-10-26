@@ -6,9 +6,10 @@ import java.util.Scanner;
  * @author changzhao
  */
 public class Atm {
-    public Screen screen;
-    public KeyPad keyPad;
+    private final Screen screen;
+    private final KeyPad keyPad;
     private double totalCash;
+    
     public Atm(){
         this.totalCash = 1000.0;
         this.screen = new Screen();
@@ -27,89 +28,95 @@ public class Atm {
         this.screen.displayWithdrawalOption();       
     }
     
+    public void displayDepositEnvelop(){
+        this.screen.displayDepositeEnvelop();
+    }
+    
     public void displayThankYou(){
-        this.screen.displayWithdrawalOption();       
+        this.screen.thankYou();       
     }
     
+    public void displayReminder(){
+        this.screen.reminder();       
+    }
+        
+    public void displayCashWarning(){
+        this.screen.notEnoughCashWarning();
+    }
+    
+    public void displayBalanceWarning(){
+        this.screen.notEnoughBalanceWarning();
+    }
+        
     // this method return user-entered account and password
-    public String[] askUserLogIn(){
-        return this.keyPad.userLogIn();
+    public String getUserAccount(){
+        String userAccount;
+        do {
+            System.out.println("\nPlease enter 5-digit account:");
+            userAccount = keyPad.getUserInput();
+            if (!userAccount.matches("[0-9]{5}")) {
+                System.out.println("\nIncorrect account format! Please enter it again:\n");
+            }
+        } while (!userAccount.matches("[0-9]{5}"));
+        return userAccount;
     }
     
-    public String getMenuOption(){
-        return this.keyPad.userMenuOption();
+    public String getUserPassword(){
+        String userPassword;
+        do {
+            System.out.println("\nPlease enter 5-digit PIN:");
+            userPassword = keyPad.getUserInput();
+            if (!userPassword.matches("[0-9]{5}")) {
+                System.out.println("\nIncorrect password format! Please enter it again:\n");
+            }
+        } while (!userPassword.matches("[0-9]{5}"));
+        
+        return userPassword;
     }
     
-    public void dispenseCash (double withdrawlAmount) throws NotEnoughCashException {
+    public int getMenuOption(){
+        String menuOption;
+        do {
+            System.out.println("\nPlease enter your menu option:");
+            menuOption = keyPad.getUserInput();
+            if (!menuOption.matches("[1-4]{1}")) {
+                System.out.println("\nIncorrect menu option! Please enter it again:\n");
+            }
+        } while (!menuOption.matches("[1-4]{1}"));
+        return Integer.parseInt(menuOption);
+    }
+    
+    public int getWithdrawlOption(){
+        String withdrawlOption;
+         do {
+            screen.displayWithdrawalOption();
+            withdrawlOption = keyPad.getUserInput();
+            if (!withdrawlOption.matches("[1-6]{1}")) {
+                System.out.println("\nIncorrect withdrawl option! Please enter it again:\n");
+            }
+        } while (!withdrawlOption.matches("[1-6]{1}"));
+        return Integer.parseInt(withdrawlOption);
+    }
+    
+    public int getDepositAmount(){
+        String depositAmount;
+         do {
+            System.out.println("\nPlease enter your deposit amount as a number of cents:");
+            depositAmount = keyPad.getUserInput();
+            if (!depositAmount.matches("[0-9]+")) {
+                System.out.println("\nIncorrect deposit amount! Please enter it again:\n");
+            }
+        } while (!depositAmount.matches("[0-9]+"));
+        return Integer.parseInt(depositAmount);
+    }
+    
+    public void dispenseCash(double withdrawlAmount) throws NotEnoughCashException {
         if (this.totalCash >= withdrawlAmount) this.totalCash -= withdrawlAmount;
-        else throw new NotEnoughCashException();
+        else throw new NotEnoughCashException("There is not enough cash in the ATM! "
+            + "Please reselect the withdrawl amount!");
     }
-    
+
     public double getTotalCash(){
         return this.totalCash;
     }
 }
-
-
-class Screen {
-    public Screen(){}
-    public final void welcome () {System.out.println("Welcome!");}
-    public final void displayMainMenu(){
-    System.out.print("========================\n"
-            + "ATM Menu:\n"
-            + "1. Balance Inquiry \n"
-            + "2. Withdraw Money \n"
-            + "3. Deposit Funds \n"
-            + "4. End Session \n"
-            + "========================\n");
-    }
-    public final void displayWithdrawalOption(){
-        System.out.println("========================\n"
-            + "Withdrawl amount:\n"
-            + "1. $20 \n"
-            + "2. $40 \n"
-            + "3. $60 \n"
-            + "4. $100 \n"
-            + "5. $200 \n"
-            + "6. Cancel the transcation \n"
-            + "========================\n");
-    }
-    public final void displayDepositeEnvelop(){System.out.println("Please insert a deposit envelope!");}
-    public final void warning(){System.out.println("Not enough cash in the ATM!");}
-    public final void reminder(){System.out.println("Do not forget to take the money!");}
-    public final void thankYou(){System.out.println("Thank you and goodbye!");}
-}
-
-class KeyPad {
-    //the method return valid account and password entered by a user
-    public String[] userLogIn() {
-        String userAccount;
-        String userPassword;
-        Scanner scanner = new Scanner(System.in);
-        do {
-            System.out.println("\nPlease enter 5-digit account:");
-            userAccount = scanner.nextLine();
-        } while (! userAccount.matches("[0-9]{5}"));
-        
-        do {
-            System.out.println("\nPlease enter 5-digit PIN:");
-            userPassword = scanner.nextLine();
-        } while (!userPassword.matches("[0-9]{5}"));
-        
-        return new String[] {userAccount,userPassword}; 
-    }
-    
-    public String userMenuOption(){
-        String option;
-        Scanner scanner = new Scanner(System.in);
-        do {
-            System.out.println("\nPlease enter your option:");
-            option = scanner.nextLine();
-        } while (!option.matches("[1-4]{1}"));
-        return option;     
-    }
-}
-
-    
-
-

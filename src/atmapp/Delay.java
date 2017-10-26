@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 package atmapp;
+
 /**
  *
  * @author changzhao
  */
-interface Transaction {
-    void processTransaction(Atm atm, User user, int value); 
+public class Delay {
+    public static void delay(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException exp) {
+        }
+    }
 }
-

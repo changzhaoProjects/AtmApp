@@ -31,9 +31,9 @@ public class User {
         this.balance += deposit;
     }
     
-    public void withdraw (Double withdrawAmount) throws notEnoughAmountException {
+    public void withdraw (Double withdrawAmount) throws NotEnoughBalanceException {
         if (this.balance >= withdrawAmount) this.balance -= withdrawAmount;
-        else throw new notEnoughBalanceException();
+        else throw new NotEnoughBalanceException("There is not enough balance in your account");
     }
 }
 

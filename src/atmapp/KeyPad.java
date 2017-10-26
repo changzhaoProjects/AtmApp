@@ -4,11 +4,17 @@
  * and open the template in the editor.
  */
 package atmapp;
+
+import java.util.Scanner;
+
 /**
  *
  * @author changzhao
  */
-interface Transaction {
-    void processTransaction(Atm atm, User user, int value); 
+class KeyPad {
+    //the method return a single string input entered by a user
+    public String getUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
 }
-

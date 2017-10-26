@@ -8,5 +8,13 @@ package atmapp;
  *
  * @author changzhao
  */
-class NotEnoughCashException extends Exception{}
-class NotEnoughBalanceException extends Exception{}
+class NotEnoughCashException extends Exception{
+    public NotEnoughCashException (String s){
+        super(s);
+    }
+}
+class NotEnoughBalanceException extends Exception{
+    public NotEnoughBalanceException (String s){
+        super(s);
+    }
+}
