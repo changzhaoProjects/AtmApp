@@ -13,26 +13,17 @@ import static org.junit.Assert.*;
  *
  * @author changzhao
  */
-public class DepositFundTest {
+public class NotEnoughBalanceExceptionTest {
     
-    public DepositFundTest() {
+    public NotEnoughBalanceExceptionTest() {
     }
     
     @Before
     public void setUp() {
     }
 
-    /**
-     * Test of processTransaction method, of class DepositFund.
-     */
     @Test
-    public void testProcessTransaction() {
-        System.out.println("processTransaction");
-        Atm atm = null;
-        User user = null;
-        int value = 0;
-        DepositFund instance = new DepositFund();
-        instance.processTransaction(atm, user, value);
+    public void testSomeMethod() {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

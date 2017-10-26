@@ -23,28 +23,14 @@ public class KeyPadTest {
     }
 
     /**
-     * Test of userLogIn method, of class KeyPad.
+     * Test of getUserInput method, of class KeyPad.
      */
     @Test
-    public void testUserLogIn() {
-        System.out.println("userLogIn");
-        KeyPad instance = new KeyPad();
-        String[] expResult = null;
-        String[] result = instance.userLogIn();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of userMenuOption method, of class KeyPad.
-     */
-    @Test
-    public void testUserMenuOption() {
-        System.out.println("userMenuOption");
+    public void testGetUserInput() {
+        System.out.println("getUserInput");
         KeyPad instance = new KeyPad();
         String expResult = "";
-        String result = instance.userMenuOption();
+        String result = instance.getUserInput();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

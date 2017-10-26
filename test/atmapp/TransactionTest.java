@@ -30,15 +30,16 @@ public class TransactionTest {
         System.out.println("processTransaction");
         Atm atm = null;
         User user = null;
+        int value = 0;
         Transaction instance = new TransactionImpl();
-        instance.processTransaction(atm, user);
+        instance.processTransaction(atm, user, value);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     public class TransactionImpl implements Transaction {
 
-        public void processTransaction(Atm atm, User user) {
+        public void processTransaction(Atm atm, User user, int value) {
         }
     }
     

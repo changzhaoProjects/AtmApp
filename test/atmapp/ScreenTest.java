@@ -71,13 +71,25 @@ public class ScreenTest {
     }
 
     /**
-     * Test of warning method, of class Screen.
+     * Test of notEnoughCashWarning method, of class Screen.
      */
     @Test
-    public void testWarning() {
-        System.out.println("warning");
+    public void testNotEnoughCashWarning() {
+        System.out.println("notEnoughCashWarning");
         Screen instance = new Screen();
-        instance.warning();
+        instance.notEnoughCashWarning();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of notEnoughBalanceWarning method, of class Screen.
+     */
+    @Test
+    public void testNotEnoughBalanceWarning() {
+        System.out.println("notEnoughBalanceWarning");
+        Screen instance = new Screen();
+        instance.notEnoughBalanceWarning();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

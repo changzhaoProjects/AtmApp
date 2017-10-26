@@ -30,8 +30,9 @@ public class WithdrawTest {
         System.out.println("processTransaction");
         Atm atm = null;
         User user = null;
+        int value = 0;
         Withdraw instance = new Withdraw();
-        instance.processTransaction(atm, user);
+        instance.processTransaction(atm, user, value);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
